@@ -1,0 +1,35 @@
+@use '../mixins/responsive' as mixins;
+
+.weather-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include mixins.on(md) {
+    flex-direction: row;
+  }
+
+  &__main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include mixins.on(md) {
+      width: calc(100% - 300px);
+    }
+
+    .weather-dashboard__root {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  &__sidebar {
+    width: 100%;
+
+    @include mixins.on(md) {
+      width: 300px;
+    }
+  }
+}

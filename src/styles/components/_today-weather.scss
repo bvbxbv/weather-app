@@ -1,0 +1,47 @@
+@use '../vars/bootstrap' as vars;
+
+.today-weather {
+  height: 300px;
+
+  background-image: url('/filler.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+
+  color: white;
+
+  &__overlay {
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.2);
+
+    padding: 0px 2rem;
+
+    .today-weather__text {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      font-weight: 700;
+
+      .today-weather__text-location {
+        font-size: 1.5rem;
+      }
+
+      .today-weather__text-timestamp {
+        font-size: 1rem;
+        color: vars.$theme-text-dimmed;
+      }
+    }
+
+    .today-weather__temperature {
+      font-size: 4rem;
+      font-style: italic;
+    }
+  }
+}

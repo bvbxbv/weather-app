@@ -1,0 +1,39 @@
+@use '../mixins/responsive' as mixins;
+@use '../vars/bootstrap' as vars;
+
+.today-more-info {
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  &__card {
+    width: calc(50% - 4.5rem);
+    height: 100px;
+
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 0 2rem;
+    border-radius: 10px;
+
+    background-color: vars.$theme-background-secondary;
+    color: vars.$theme-text-dimmed-2;
+
+    @include mixins.on(lg) {
+      width: calc(25% - 4.75rem);
+    }
+
+    &--title {
+      font-size: 1rem;
+    }
+
+    &--value {
+      color: white;
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+@use '../mixins/bootstrap' as mixins;
+@use '../vars/bootstrap' as vars;
+
+.weather-dashboard__sidebar {
+  background-color: vars.$theme-background-secondary;
+  border-radius: 10px;
+
+  color: white;
+
+  .weather-dashboard__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+
+    .weather-dashboard__dropdown {
+      display: flex;
+      background-color: vars.$theme-background-accent;
+      padding: 0.4rem 0.5rem;
+      border-radius: 5px;
+
+      &-title {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .weather-dashboard__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+
+    .weather-dashboard__list-item {
+      height: 50px;
+
+      padding-left: 10px;
+      padding-right: 10px;
+
+      background-color: vars.$theme-background-accent;
+
+      border-radius: 5px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .weather-dashboard__list-icon {
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+
+      .weather-dashboard__list-time {
+        width: 100%;
+      }
+
+      .weather-dashboard__list-temperature {
+        text-wrap: nowrap;
+      }
+    }
+
+    overflow-y: auto;
+
+    @include mixins.on(md) {
+      overflow-y: scroll;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @include mixins.on(md) {
+      &::-webkit-scrollbar {
+        display: block;
+        width: 5px;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #3d3b5c;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: gray;
+      border-radius: 5px;
+    }
+  }
+}
