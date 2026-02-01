@@ -1,0 +1,54 @@
+@use '../vars/bootstrap' as vars;
+
+$text-size--header: 2rem;
+
+header.page-header {
+  width: 100%;
+  height: auto;
+
+  background: transparent;
+  color: vars.$theme-text-primary;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: $text-size--header;
+
+  .page-header__item {
+    width: max-content;
+    height: fit-content;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &.page-header__item--logo {
+      .page-header__item-icon {
+        svg {
+          color: orange;
+        }
+      }
+
+      .page-header__item-text {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+    }
+
+    &.page-header__item--dropdown {
+      padding: 0.6rem 1rem;
+      background-color: vars.$theme-controls-secondary-background;
+      border-radius: 5px;
+
+      .page-header__item-text {
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      &:hover {
+        background-color: vars.$theme-controls-secondary-background-hovered;
+      }
+    }
+  }
+}

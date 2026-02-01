@@ -1,0 +1,25 @@
+@use '../vars/bootstrap' as vars;
+@use '../mixins/bootstrap' as mixins;
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+
+  background-color: vars.$theme-background-primary;
+
+  display: flex;
+  justify-content: center;
+
+  .page__root {
+    width: 90%;
+    height: auto;
+
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    @include mixins.on(md) {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+  }
+}
