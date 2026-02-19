@@ -1,6 +1,12 @@
-import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { DailyForecast, Header, TodayWeather, TodayWeatherList, WelcomeSection } from './ui';
+import {
+  DailyForecast,
+  Header,
+  HourlyForecast,
+  TodayWeather,
+  TodayWeatherList,
+  WelcomeSection,
+} from './ui';
 
 export const WeatherPage = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -91,33 +97,21 @@ export const WeatherPage = () => {
             </div>
           </main>
 
-          <aside className="weather-dashboard__sidebar">
-            <div className="weather-dashboard__header">
-              <div className="weather-dashboard__header-title">Hourly forecast</div>
+          <HourlyForecast.Root>
+            <HourlyForecast.Header title="Hourly forecast" selectedDay="Monday" />
 
-              <div className="weather-dashboard__dropdown">
-                <div className="weather-dashboard__dropdown-title">Tuesday</div>
-                <ChevronDown size={16} />
-              </div>
-            </div>
-
-            <div
-              className="weather-dashboard__list"
-              style={{ height: mainHeight ? `${mainHeight - 60.78}px` : 'auto' }}
-            >
-              {Array.from({ length: 24 }).map((_, index) => (
-                <div className="weather-dashboard__list-item" key={index}>
-                  <div className="weather-dashboard__list-icon">
-                    <img src="/icons/rain_day.png" alt="" />
-                  </div>
-
-                  <div className="weather-dashboard__list-time">{index + 1} PM</div>
-
-                  <div className="weather-dashboard__list-temperature">20 &deg;</div>
-                </div>
-              ))}
-            </div>
-          </aside>
+            <HourlyForecast.List maxHeight={mainHeight}>
+              {Array.from({ length: 24 }).map((_, index) => {
+                return (
+                  <HourlyForecast.Item
+                    icon="/icons/rain_day.png"
+                    time={((index + 1) % 12 || 12) + ' ' + (index < 12 ? 'AM' : 'PM')}
+                    temperature={12}
+                  />
+                );
+              })}
+            </HourlyForecast.List>
+          </HourlyForecast.Root>
         </div>
       </div>
     </div>
