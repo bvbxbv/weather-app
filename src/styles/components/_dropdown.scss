@@ -1,25 +1,76 @@
 @use '../vars/bootstrap' as vars;
 
 .dropdown {
+  position: relative;
+
   width: max-content;
   height: fit-content;
 
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
 
-  padding: 0.6rem 1rem;
-  background-color: vars.$theme-controls-secondary-background;
-  border-radius: 5px;
+  &__root {
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+
+    border-radius: 5px;
+    background-color: vars.$theme-controls-secondary-background;
+
+    &:hover {
+      background-color: vars.$theme-controls-secondary-background-hovered;
+    }
+  }
 
   cursor: pointer;
 
   &__text {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
   }
 
-  &:hover {
-    background-color: vars.$theme-controls-secondary-background-hovered;
+  &__options {
+    width: 100%;
+    position: absolute;
+    top: 45px;
+    flex-direction: column;
+
+    transition: opacity 0.2s;
+
+    &--item {
+      padding: 0.6rem 1rem;
+      font-size: 0.8rem;
+      background-color: vars.$theme-controls-secondary-background;
+
+      &:first-child {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+
+      &:hover {
+        background-color: vars.$theme-controls-secondary-background-hovered;
+      }
+    }
   }
+}
+
+.dropdown--units {
+  width: 120px;
+
+  .dropdown__root {
+    .dropdown__text {
+      width: 100%;
+    }
+  }
+}
+
+.dropdown--day {
+  width: 140px;
 }
