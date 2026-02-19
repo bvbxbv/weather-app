@@ -1,5 +1,5 @@
 import { Settings, SunSnow } from 'lucide-react';
-import Select from '../components/Select';
+import Select from '../components/Select/components/Select';
 
 export const Header = () => {
   return (
@@ -12,11 +12,9 @@ export const Header = () => {
         <div className="page-header__item-text">Weather now</div>
       </div>
 
-      <Select.Root icon={Settings} text="Units">
-        <Select.Option title="qweqwe zz 1" />
-        <Select.Option title="qweqwe zz 2" />
-        <Select.Option title="qweqwe zz 3" />
-        <Select.Option title="qweqwe zz 4" />
+      <Select.Root icon={Settings} text="Units" className="dropdown--units">
+        <Select.Option title="C &deg;" />
+        <Select.Option title="F &deg;" />
       </Select.Root>
     </header>
   );

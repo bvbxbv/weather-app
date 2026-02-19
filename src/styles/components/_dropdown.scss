@@ -12,6 +12,7 @@
   &__root {
     padding: 0.6rem 1rem;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
 
@@ -26,7 +27,7 @@
   cursor: pointer;
 
   &__text {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: bold;
   }
 
@@ -58,4 +59,18 @@
       }
     }
   }
+}
+
+.dropdown--units {
+  width: 120px;
+
+  .dropdown__root {
+    .dropdown__text {
+      width: 100%;
+    }
+  }
+}
+
+.dropdown--day {
+  width: 140px;
 }
