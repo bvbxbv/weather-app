@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useElementHeight } from './hooks/useElementHeight';
 import {
   DailyForecast,
   Header,
@@ -9,22 +9,7 @@ import {
 } from './ui';
 
 export const WeatherPage = () => {
-  const mainRef = useRef<HTMLDivElement>(null);
-  const [mainHeight, setMainHeight] = useState(0);
-
-  useEffect(() => {
-    if (!mainRef.current) return;
-
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        setMainHeight(entry.contentRect.height);
-      }
-    });
-
-    observer.observe(mainRef.current);
-
-    return () => observer.disconnect();
-  }, []);
+  const { ref, height } = useElementHeight();
 
   return (
     <div className="page">
@@ -34,7 +19,7 @@ export const WeatherPage = () => {
 
         <div className="weather-dashboard">
           <main className="weather-dashboard__main">
-            <div className="weather-dashboard__root" ref={mainRef}>
+            <div className="weather-dashboard__root" ref={ref}>
               <TodayWeather
                 location="Berlin, Germany"
                 timestamp="Tuesday, Aug 5, 2025"
@@ -100,7 +85,7 @@ export const WeatherPage = () => {
           <HourlyForecast.Root>
             <HourlyForecast.Header title="Hourly forecast" selectedDay="Monday" />
 
-            <HourlyForecast.List maxHeight={mainHeight}>
+            <HourlyForecast.List maxHeight={height}>
               {Array.from({ length: 24 }).map((_, index) => {
                 return (
                   <HourlyForecast.Item
