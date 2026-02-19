@@ -35,20 +35,5 @@ header.page-header {
         font-weight: bold;
       }
     }
-
-    &.page-header__item--dropdown {
-      padding: 0.6rem 1rem;
-      background-color: vars.$theme-controls-secondary-background;
-      border-radius: 5px;
-
-      .page-header__item-text {
-        font-size: 0.9rem;
-        font-weight: bold;
-      }
-
-      &:hover {
-        background-color: vars.$theme-controls-secondary-background-hovered;
-      }
-    }
   }
 }

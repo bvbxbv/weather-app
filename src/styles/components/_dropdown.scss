@@ -1,0 +1,25 @@
+@use '../vars/bootstrap' as vars;
+
+.dropdown {
+  width: max-content;
+  height: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  padding: 0.6rem 1rem;
+  background-color: vars.$theme-controls-secondary-background;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  &__text {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: vars.$theme-controls-secondary-background-hovered;
+  }
+}
