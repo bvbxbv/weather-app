@@ -1,5 +1,5 @@
-interface TodayWeatherProps  {
-  // можно будет обернуть location в объект типа 
+interface TodayWeatherProps {
+  // можно будет обернуть location в объект типа
   // location = {
   //   city: string,
   //   country: string,
@@ -14,7 +14,7 @@ interface TodayWeatherProps  {
   temperature: string; // 20*
 }
 
-export const TodayWeather = ({location, timestamp, temperature}: TodayWeatherProps) => {
+export const TodayWeather = ({ location, timestamp, temperature }: TodayWeatherProps) => {
   return (
     <section className="today-weather">
       <div className="today-weather__overlay">

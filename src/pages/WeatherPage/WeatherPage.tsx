@@ -29,7 +29,11 @@ export const WeatherPage = () => {
         <div className="weather-dashboard">
           <main className="weather-dashboard__main">
             <div className="weather-dashboard__root" ref={mainRef}>
-              <TodayWeather location='Berlin, Germany' timestamp='Tuesday, Aug 5, 2025' temperature='20'/>
+              <TodayWeather
+                location="Berlin, Germany"
+                timestamp="Tuesday, Aug 5, 2025"
+                temperature="20"
+              />
 
               <section className="today-more-info">
                 <div className="today-more-info__card">
