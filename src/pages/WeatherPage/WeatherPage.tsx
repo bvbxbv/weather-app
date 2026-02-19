@@ -92,6 +92,7 @@ export const WeatherPage = () => {
                     icon="/icons/rain_day.png"
                     time={((index + 1) % 12 || 12) + ' ' + (index < 12 ? 'AM' : 'PM')}
                     temperature={12}
+                    key={index}
                   />
                 );
               })}
