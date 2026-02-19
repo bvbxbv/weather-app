@@ -1,6 +1,6 @@
-import { ChevronDown, SearchIcon } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Header } from './ui';
+import { Header, WelcomeSection } from './ui';
 
 export const WeatherPage = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -24,25 +24,7 @@ export const WeatherPage = () => {
     <div className="page">
       <div className="page__root">
         <Header />
-
-        <section className="welcome">
-          <h1 className="welcome__title">How's the sky looking today?</h1>
-
-          <form action="#" method="GET" className="welcome__search">
-            <div className="welcome__search-wrapper">
-              <SearchIcon size={20} className="welcome__search-icon" />
-
-              <input
-                type="text"
-                name="place"
-                className="welcome__search-input"
-                placeholder="Search for a place..."
-              />
-            </div>
-
-            <button className="welcome__search-submit">Search</button>
-          </form>
-        </section>
+        <WelcomeSection />
 
         <div className="weather-dashboard">
           <main className="weather-dashboard__main">

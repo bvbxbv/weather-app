@@ -1,4 +1,4 @@
-import { SunSnow, Settings, ChevronDown } from "lucide-react";
+import { ChevronDown, Settings, SunSnow } from 'lucide-react';
 
 export const Header = () => {
   return (
