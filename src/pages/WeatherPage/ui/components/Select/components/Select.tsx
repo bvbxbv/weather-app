@@ -41,9 +41,10 @@ const Root = ({ icon: Icon, text, needChevron = true, children, className = '' }
 
 interface OptionProps {
   title: string;
+  onClick?: (title: string) => void;
 }
 
-const Option = ({ title }: OptionProps) => {
+const Option = ({ title, onClick = () => {} }: OptionProps) => {
   const { setOpened, setValue } = useSelect();
 
   return (
@@ -52,6 +53,7 @@ const Option = ({ title }: OptionProps) => {
       onClick={() => {
         setValue?.(title);
         setOpened?.(false);
+        onClick(title);
       }}
     >
       {title}
