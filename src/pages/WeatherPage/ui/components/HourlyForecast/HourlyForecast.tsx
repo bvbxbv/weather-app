@@ -1,4 +1,4 @@
-import { Select } from '../Select';
+import Select from '../Select';
 
 interface RootProps {
   children: React.ReactNode;
@@ -29,7 +29,15 @@ const Header = ({ title, selectedDay }: HeaderProps) => {
     <div className="weather-dashboard__header">
       <div className="weather-dashboard__header-title">{title}</div>
 
-      <Select text={selectedDay} />
+      <Select.Root text={selectedDay}>
+        <Select.Option title="Monday" />
+        <Select.Option title="Tuesday" />
+        <Select.Option title="Wednesday" />
+        <Select.Option title="Thursday" />
+        <Select.Option title="Friday" />
+        <Select.Option title="Saturday" />
+        <Select.Option title="Sunday" />
+      </Select.Root>
     </div>
   );
 };
