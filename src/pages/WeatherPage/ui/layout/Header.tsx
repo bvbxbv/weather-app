@@ -1,4 +1,5 @@
-import { ChevronDown, Settings, SunSnow } from 'lucide-react';
+import { Settings, SunSnow } from 'lucide-react';
+import { Select } from '../components/Select';
 
 export const Header = () => {
   return (
@@ -7,20 +8,11 @@ export const Header = () => {
         <div className="page-header__item-icon">
           <SunSnow size={36} />
         </div>
+
         <div className="page-header__item-text">Weather now</div>
       </div>
 
-      <div className="page-header__item page-header__item--dropdown hoverable">
-        <div className="page-header__item-icon">
-          <Settings size={16} />
-        </div>
-
-        <div className="page-header__item-text">Units</div>
-
-        <div className="page-header__item-icon">
-          <ChevronDown size={16} />
-        </div>
-      </div>
+      <Select icon={Settings} text="Units"></Select>
     </header>
   );
 };

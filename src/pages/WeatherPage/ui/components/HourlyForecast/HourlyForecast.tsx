@@ -1,4 +1,4 @@
-import { ChevronDown } from 'lucide-react';
+import { Select } from '../Select';
 
 interface RootProps {
   children: React.ReactNode;
@@ -29,10 +29,7 @@ const Header = ({ title, selectedDay }: HeaderProps) => {
     <div className="weather-dashboard__header">
       <div className="weather-dashboard__header-title">{title}</div>
 
-      <div className="weather-dashboard__dropdown">
-        <div className="weather-dashboard__dropdown-title">{selectedDay}</div>
-        <ChevronDown size={16} />
-      </div>
+      <Select text={selectedDay} />
     </div>
   );
 };

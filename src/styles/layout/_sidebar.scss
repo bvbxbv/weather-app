@@ -12,17 +12,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-
-    .weather-dashboard__dropdown {
-      display: flex;
-      background-color: vars.$theme-background-accent;
-      padding: 0.4rem 0.5rem;
-      border-radius: 5px;
-
-      &-title {
-        font-size: 0.9rem;
-      }
-    }
   }
 
   .weather-dashboard__list {
