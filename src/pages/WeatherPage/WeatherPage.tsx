@@ -1,6 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Header, TodayWeather, WelcomeSection, TodayWeatherList } from './ui';
+import { DailyForecast, Header, TodayWeather, TodayWeatherList, WelcomeSection } from './ui';
 
 export const WeatherPage = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -42,102 +42,52 @@ export const WeatherPage = () => {
                 <TodayWeatherList.Item title="Precipitation">0 mm</TodayWeatherList.Item>
               </TodayWeatherList.Root>
 
-              <section className="daily-forecast">
-                <h2 className="daily-forecast__title">Daily forecast</h2>
-
-                <div className="daily-forecast__grid">
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Tue</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Wed</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Thu</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Fri</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Sat</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Sun</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-
-                  <div className="daily-forecast__item">
-                    <div className="daily-forecast__weekday">Mon</div>
-
-                    <div className="daily-forecast__icon">
-                      <img src="/icons/rain_day.png" />
-                    </div>
-
-                    <div className="daily-forecast__temperature">
-                      <div className="daily-forecast__temperature-day">25°</div>
-                      <div className="daily-forecast__temperature-night">13°</div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+              <DailyForecast.Root title="Daily Forecast">
+                <DailyForecast.Grid>
+                  <DailyForecast.Item
+                    weekday="Mon"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                  <DailyForecast.Item
+                    weekday="Tue"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                  <DailyForecast.Item
+                    weekday="Wed"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                  <DailyForecast.Item
+                    weekday="Thu"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                  <DailyForecast.Item
+                    weekday="Fri"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                  <DailyForecast.Item
+                    weekday="Sat"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                  <DailyForecast.Item
+                    weekday="Sun"
+                    icon="/icons/rain_day.png"
+                    dayTemperature={20}
+                    nightTemperature={15}
+                  />
+                </DailyForecast.Grid>
+              </DailyForecast.Root>
             </div>
           </main>
 
