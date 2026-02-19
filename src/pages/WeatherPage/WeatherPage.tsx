@@ -1,6 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Header, WelcomeSection } from './ui';
+import { Header, TodayWeather, WelcomeSection } from './ui';
 
 export const WeatherPage = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -29,17 +29,7 @@ export const WeatherPage = () => {
         <div className="weather-dashboard">
           <main className="weather-dashboard__main">
             <div className="weather-dashboard__root" ref={mainRef}>
-              <section className="today-weather">
-                <div className="today-weather__overlay">
-                  <div className="today-weather__text">
-                    <div className="today-weather__text-location">Berlin, Germany</div>
-
-                    <div className="today-weather__text-timestamp">Tuesday, Aug 5, 2025</div>
-                  </div>
-
-                  <div className="today-weather__temperature">20&deg;</div>
-                </div>
-              </section>
+              <TodayWeather location='Berlin, Germany' timestamp='Tuesday, Aug 5, 2025' temperature='20'/>
 
               <section className="today-more-info">
                 <div className="today-more-info__card">
