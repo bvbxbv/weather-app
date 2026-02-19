@@ -1,6 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { Header, TodayWeather, WelcomeSection } from './ui';
+import { Header, TodayWeather, WelcomeSection, TodayWeatherList } from './ui';
 
 export const WeatherPage = () => {
   const mainRef = useRef<HTMLDivElement>(null);
@@ -35,31 +35,12 @@ export const WeatherPage = () => {
                 temperature="20"
               />
 
-              <section className="today-more-info">
-                <div className="today-more-info__card">
-                  <div className="today-more-info__card--title">Feels like</div>
-
-                  <div className="today-more-info__card--value">18 &deg;</div>
-                </div>
-
-                <div className="today-more-info__card">
-                  <div className="today-more-info__card--title">Humidity</div>
-
-                  <div className="today-more-info__card--value">46%</div>
-                </div>
-
-                <div className="today-more-info__card">
-                  <div className="today-more-info__card--title">Wind</div>
-
-                  <div className="today-more-info__card--value">14 km/h</div>
-                </div>
-
-                <div className="today-more-info__card">
-                  <div className="today-more-info__card--title">Precipitation</div>
-
-                  <div className="today-more-info__card--value">0 mm</div>
-                </div>
-              </section>
+              <TodayWeatherList.Root>
+                <TodayWeatherList.Item title="Feels like">18&deg;</TodayWeatherList.Item>
+                <TodayWeatherList.Item title="Humidity">46%</TodayWeatherList.Item>
+                <TodayWeatherList.Item title="Wind">14 km/h</TodayWeatherList.Item>
+                <TodayWeatherList.Item title="Precipitation">0 mm</TodayWeatherList.Item>
+              </TodayWeatherList.Root>
 
               <section className="daily-forecast">
                 <h2 className="daily-forecast__title">Daily forecast</h2>
