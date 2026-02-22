@@ -2,12 +2,12 @@ import { CircleX, SearchIcon } from 'lucide-react';
 import { SearchInput } from './SearchInput';
 
 interface LocationSearchProps {
-  query: string;
+  value: string;
   onInputClick: () => void;
   onInputChange: (v: string) => void;
 }
 
-export const LocationSearch = ({ query, onInputClick, onInputChange }: LocationSearchProps) => {
+export const LocationSearch = ({ value, onInputClick, onInputChange }: LocationSearchProps) => {
   return (
     <form action="#" method="GET" className="welcome__search">
       <div className="welcome__search-wrapper">
@@ -20,7 +20,7 @@ export const LocationSearch = ({ query, onInputClick, onInputChange }: LocationS
             onInputChange(v);
           }}
           onClick={onInputClick}
-          value={query}
+          value={value}
         />
 
         <div

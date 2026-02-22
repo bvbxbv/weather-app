@@ -1,0 +1,38 @@
+import type { Location } from '../../../../../types';
+
+interface LocationDropdownProps {
+  opened: boolean;
+  data: Location[] | null;
+  loading: boolean;
+}
+
+export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProps) => {
+  return (
+    <div className={'input__dropdown ' + (opened ? 'visible' : 'hidden')}>
+      <ul className={data && data?.length > 5 ? 'scrollable' : ''}>
+        {data &&
+          data?.length > 0 &&
+          data?.map((location) => (
+            <li className="dropdown__location" key={location.city.id}>
+              <div className="dropdown__location--flag"></div>
+              <div className="dropdown__location--name">
+                {location.city.name}, {location.country.name}
+              </div>
+            </li>
+          ))}
+
+        {/* spinner taken from https://cssloaders.github.io/ */}
+        {/* FIXME: добавить ссылку на спиннер в readme */}
+        {loading && data?.length === 0 && (
+          <li className="dropdown__location--spinner">
+            <div className="loader"></div>
+          </li>
+        )}
+
+        {(!data || (data?.length === 0 && !loading)) && (
+          <li className="dropdown__location--empty">Ничего нет :/</li>
+        )}
+      </ul>
+    </div>
+  );
+};

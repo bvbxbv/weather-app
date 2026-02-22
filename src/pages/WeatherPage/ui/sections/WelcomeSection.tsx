@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useLocations } from '../../hooks/useLocations';
+import { LocationDropdown } from '../components/LocationSearch/LocationDropdown';
 import { LocationSearch } from '../components/LocationSearch/LocationSearch';
 
 export const WelcomeSection = () => {
@@ -48,37 +49,12 @@ export const WelcomeSection = () => {
 
       <div className="input-wrapper" ref={ref}>
         <LocationSearch
-          query={query}
+          value={query}
           onInputChange={(v) => onInputChange(v)}
           onInputClick={onInputClick}
         />
 
-        <div className={'input__dropdown ' + (opened ? 'visible' : 'hidden')}>
-          <ul className={data && data?.length > 5 ? 'scrollable' : ''}>
-            {data &&
-              data?.length > 0 &&
-              data?.map((location) => (
-                <li className="dropdown__location" key={location.city.id}>
-                  <div className="dropdown__location--flag"></div>
-                  <div className="dropdown__location--name">
-                    {location.city.name}, {location.country.name}
-                  </div>
-                </li>
-              ))}
-
-            {/* spinner taken from https://cssloaders.github.io/ */}
-            {/* FIXME: добавить ссылку на спиннер в readme */}
-            {loading && data?.length === 0 && (
-              <li className="dropdown__location--spinner">
-                <div className="loader"></div>
-              </li>
-            )}
-
-            {(!data || (data?.length === 0 && !loading)) && (
-              <li className="dropdown__location--empty">Ничего нет :/</li>
-            )}
-          </ul>
-        </div>
+        <LocationDropdown opened={opened} data={data} loading={loading} />
       </div>
     </section>
   );
