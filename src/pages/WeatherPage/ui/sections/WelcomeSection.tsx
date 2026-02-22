@@ -1,5 +1,5 @@
 import { SearchIcon } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocations } from '../../hooks/useLocations';
 import { Input } from '../components/Input/Input';
 
@@ -10,6 +10,8 @@ export const WelcomeSection = () => {
     `https://geocoding-api.open-meteo.com/v1/search?name=${query ?? ''}&count=10&language=auto&format=json`,
   );
   const { data, loading, error } = useLocations({ apiUrl });
+
+  const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setApiUrl(
@@ -24,11 +26,27 @@ export const WelcomeSection = () => {
     }
   }, [error]);
 
+  useEffect(() => {
+    const clickOutsideHandler = (e: MouseEvent) => {
+      if (!ref.current) return;
+
+      if (!ref.current.contains(e.target as Node)) {
+        setOpened(false);
+      }
+    };
+
+    document.addEventListener('mousedown', clickOutsideHandler);
+
+    return () => {
+      document.removeEventListener('mousedown', clickOutsideHandler);
+    };
+  }, []);
+
   return (
     <section className="welcome">
       <h1 className="welcome__title">How's the sky looking today?</h1>
 
-      <div className="input-wrapper">
+      <div className="input-wrapper" ref={ref}>
         <form action="#" method="GET" className="welcome__search">
           <div className="welcome__search-wrapper">
             <SearchIcon size={20} className="welcome__search-icon" />
@@ -52,7 +70,6 @@ export const WelcomeSection = () => {
         </form>
 
         <div className={'input__dropdown ' + (opened ? 'visible' : 'hidden')}>
-          {/* TODO: сделать сокрытие дропдауна если был клик по итему или вне дропдауна */}
           <ul className={data && data?.length > 5 ? 'scrollable' : ''}>
             {data &&
               data?.length > 0 &&
