@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useClickOutside } from '../../hooks/useClickOutside';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useLocations } from '../../hooks/useLocations';
 import { LocationDropdown } from '../components/LocationSearch/LocationDropdown';
@@ -10,29 +11,15 @@ export const WelcomeSection = () => {
   const debounceValue = useDebounce(query);
   const { data, loading, error } = useLocations(debounceValue);
 
-  const ref = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     if (error) {
       console.error(error);
     }
   }, [error]);
 
-  useEffect(() => {
-    const clickOutsideHandler = (e: MouseEvent) => {
-      if (!ref.current) return;
-
-      if (!ref.current.contains(e.target as Node)) {
-        setOpened(false);
-      }
-    };
-
-    document.addEventListener('mousedown', clickOutsideHandler);
-
-    return () => {
-      document.removeEventListener('mousedown', clickOutsideHandler);
-    };
-  }, []);
+  const { ref } = useClickOutside(() => {
+    setOpened(false);
+  });
 
   const onInputChange = (v: string) => {
     setQuery(v);

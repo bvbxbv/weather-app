@@ -26,7 +26,6 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
           ))}
 
         <LocationLoading enabled={loading && !hasLocations} />
-
         <LocationEmpty enabled={!hasLocations && !loading} />
       </ul>
     </div>
