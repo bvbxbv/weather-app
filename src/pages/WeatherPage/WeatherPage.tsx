@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useElementHeight } from './hooks/useElementHeight';
+import { useLocations } from './hooks/useLocations';
 import { useWeather } from './hooks/useWeather';
 import {
   DailyForecast,
@@ -12,21 +13,45 @@ import {
 
 export const WeatherPage = () => {
   const { ref, height } = useElementHeight();
-  const apiUrl =
+  const weatherUrl =
     'https://api.open-meteo.com/v1/forecast?latitude=52.23&longitude=21.01&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m&timezone=auto';
-  const { data, loading, error } = useWeather({ apiUrl });
+  const locationsUrl =
+    'https://geocoding-api.open-meteo.com/v1/search?name=Москва&count=10&language=auto&format=json';
+
+  const {
+    data: weather,
+    loading: weatherLoading,
+    error: weatherError,
+  } = useWeather({ apiUrl: weatherUrl });
+  const {
+    data: locations,
+    loading: locationsLoading,
+    error: locationsError,
+  } = useLocations({ apiUrl: locationsUrl });
 
   useEffect(() => {
-    if (loading) {
-      console.log('loading...');
+    if (weatherLoading) {
+      console.log('Weather loading...');
     } else {
-      if (error) {
-        console.error(error);
+      if (weatherError) {
+        console.error(weatherError);
       } else {
-        console.log(data);
+        console.log('Weather loaded');
+        console.log(weather);
       }
     }
-  }, [data, loading, error]);
+
+    if (locationsLoading) {
+      console.log('Locations loading...');
+    } else {
+      if (locationsError) {
+        console.error(locationsError);
+      } else {
+        console.log('Locations loaded');
+        console.log(locations);
+      }
+    }
+  }, [weather, weatherLoading, weatherError, locations, locationsLoading, locationsError]);
 
   return (
     <div className="page">
