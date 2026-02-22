@@ -1,4 +1,4 @@
-interface InputProps {
+interface SearchInput {
   type?: string;
   name: string;
   className?: string;
@@ -8,7 +8,7 @@ interface InputProps {
   onChange?: (val: string) => void;
 }
 
-export const Input = ({
+export const SearchInput = ({
   type = '',
   name,
   value,
@@ -16,7 +16,7 @@ export const Input = ({
   placeholder = '',
   onClick = () => {},
   onChange = () => {},
-}: InputProps) => {
+}: SearchInput) => {
   return (
     <input
       type={type}
