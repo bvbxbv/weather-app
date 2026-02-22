@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react';
 import { getLocation } from '../../../services/locationService';
 import type { Location } from '../../../types';
 
-interface useLocationsProps {
-  apiUrl: string;
-}
-
-export const useLocations = ({ apiUrl }: useLocationsProps) => {
+export const useLocations = (query: string) => {
   const [data, setData] = useState<Location[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const runService = async () => {
+      setLoading(true);
       try {
-        const res = await getLocation(apiUrl);
+        if (!query.trim()) {
+          setData(null);
+          setLoading(false);
+          return;
+        }
+
+        const res = await getLocation(query);
         setData(res);
       } catch (err) {
         setError(err as Error);
@@ -24,7 +27,7 @@ export const useLocations = ({ apiUrl }: useLocationsProps) => {
     };
 
     runService();
-  }, [apiUrl]);
+  }, [query]);
 
   return { data, loading, error };
 };
