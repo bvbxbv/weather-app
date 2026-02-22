@@ -104,6 +104,8 @@
     border-radius: 10px;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
 
+    transition: opacity 0.25s;
+
     @include mixins.on(md) {
       top: 60px; // gap - 10px
     }

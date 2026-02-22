@@ -13,6 +13,7 @@ export const useLocations = ({ apiUrl }: useLocationsProps) => {
 
   useEffect(() => {
     const runService = async () => {
+      setLoading(true);
       try {
         const res = await getLocation(apiUrl);
         setData(res);

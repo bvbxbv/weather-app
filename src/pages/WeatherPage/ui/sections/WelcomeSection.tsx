@@ -1,7 +1,26 @@
 import { SearchIcon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useLocations } from '../../hooks/useLocations';
 import { Input } from '../components/Input/Input';
 
 export const WelcomeSection = () => {
+  const [query, setQuery] = useState<string>('');
+  const [apiUrl, setApiUrl] = useState<string>(
+    `https://geocoding-api.open-meteo.com/v1/search?name=${query ?? ''}&count=10&language=auto&format=json`,
+  );
+  const { data, loading, error } = useLocations({ apiUrl });
+
+  useEffect(() => {
+    setApiUrl(
+      `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=10&language=auto&format=json`,
+    );
+  }, [query]);
+
+  // FIXME: ошибки null в консоли (это че за ужасы)
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
   return (
     <section className="welcome">
       <h1 className="welcome__title">How's the sky looking today?</h1>
@@ -11,34 +30,33 @@ export const WelcomeSection = () => {
           <div className="welcome__search-wrapper">
             <SearchIcon size={20} className="welcome__search-icon" />
 
-            <Input
-              name="city"
-              placeholder="Search for a place..."
-              onClick={() => {
-                alert('focus');
-              }}
-              onChange={(v) => alert(v)}
-            />
+            <Input name="city" placeholder="Search for a place..." onChange={(v) => setQuery(v)} />
           </div>
 
           <button className="welcome__search-submit">Search</button>
         </form>
 
         <div className="input__dropdown">
-          {/* больше 5 - scrollable, нет - убираем */}
-          <ul className={'scrollable'}>
-            {/* <ul className={''}> */}
-            {/* в случае если больше 0 */}
-            {Array.from({ length: 6 }).map((_, i) => (
-              <li className="dropdown__location" key={i}>
-                <div className="dropdown__location--flag"></div>
-                <div className="dropdown__location--name">Moscow, Russia</div>
-              </li>
-            ))}
-            {/* в случае если 0 */}
-            {/* <li className="dropdown__location--empty">
-              Ничего нет :/
-            </li> */}
+          {/* TODO: сделать сокрытие дропдауна если был клик по итему или вне дропдауна */}
+          <ul className={data && data?.length > 5 ? 'scrollable' : ''}>
+            {data &&
+              data?.length > 0 &&
+              data?.map((location) => (
+                <li className="dropdown__location" key={location.city.id}>
+                  <div className="dropdown__location--flag"></div>
+                  <div className="dropdown__location--name">
+                    {location.city.name}, {location.country.name}
+                  </div>
+                </li>
+              ))}
+
+            {/* TODO: спиннер */}
+            {loading && <li className="dropdown__location--empty">Loading...</li>}
+
+            {/* TODO: можно эмодзи добавить или что-то ещё (выглядит грустно пока что) */}
+            {(!data || (data?.length === 0 && !loading)) && (
+              <li className="dropdown__location--empty">Ничего нет :/</li>
+            )}
           </ul>
         </div>
       </div>

@@ -13,6 +13,7 @@ export const useWeather = ({ apiUrl }: useWeatherProps) => {
 
   useEffect(() => {
     const runService = async () => {
+      setLoading(true);
       try {
         const res = await getWeather(apiUrl);
         setData(res);

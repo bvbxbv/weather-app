@@ -28,7 +28,7 @@ const fetchLocations = async (apiUrl: string) => {
 
 export const getLocation = async (apiUrl: string): Promise<Location[]> => {
   const raw = await fetchLocations(apiUrl);
-  const rawLocations: RawLocation[] = raw.results;
+  const rawLocations: RawLocation[] = raw.results ?? [];
   const locations: Location[] = rawLocations.map((i) => ({
     country: {
       name: i.country,
