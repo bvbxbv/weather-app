@@ -13,7 +13,15 @@ export const useWeather = ({ apiUrl }: useWeatherProps) => {
 
   useEffect(() => {
     const runService = async () => {
+      setLoading(true);
       try {
+        // FIXME: не передавать всю ссылку а только то что меняется (lat, lon)
+        if (!apiUrl.trim()) {
+          setData(null);
+          setLoading(false);
+          return;
+        }
+
         const res = await getWeather(apiUrl);
         setData(res);
       } catch (err) {
