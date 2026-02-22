@@ -15,6 +15,7 @@ export const WeatherPage = () => {
   const apiUrl =
     'https://api.open-meteo.com/v1/forecast?latitude=52.23&longitude=21.01&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m&timezone=auto';
   const { data, loading, error } = useWeather({ apiUrl });
+
   useEffect(() => {
     if (loading) {
       console.log('loading...');
@@ -25,8 +26,7 @@ export const WeatherPage = () => {
         console.log(data);
       }
     }
-  }, [data]);
-
+  }, [data, loading, error]);
   return (
     <div className="page">
       <div className="page__root">
