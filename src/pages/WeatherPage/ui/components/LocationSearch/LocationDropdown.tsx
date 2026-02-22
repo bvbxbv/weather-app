@@ -1,4 +1,5 @@
 import type { Location } from '../../../../../types';
+import { LocationEmpty } from './LocationEmpty';
 import { LocationLoading } from './LocationLoading';
 
 interface LocationDropdownProps {
@@ -23,10 +24,7 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
           ))}
 
         <LocationLoading enabled={loading && data?.length === 0} />
-
-        {(!data || (data?.length === 0 && !loading)) && (
-          <li className="dropdown__location--empty">Ничего нет :/</li>
-        )}
+        <LocationEmpty enabled={!data || (data?.length === 0 && !loading)} />
       </ul>
     </div>
   );
