@@ -1,4 +1,5 @@
 import { SearchIcon } from 'lucide-react';
+import { Input } from '../components/Input/Input';
 
 export const WelcomeSection = () => {
   return (
@@ -9,11 +10,13 @@ export const WelcomeSection = () => {
         <div className="welcome__search-wrapper">
           <SearchIcon size={20} className="welcome__search-icon" />
 
-          <input
-            type="text"
-            name="place"
-            className="welcome__search-input"
+          <Input
+            name="city"
             placeholder="Search for a place..."
+            onClick={() => {
+              alert('focus');
+            }}
+            onChange={(v) => alert(v)}
           />
         </div>
 
