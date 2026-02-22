@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { useElementHeight } from './hooks/useElementHeight';
+import { useWeather } from './hooks/useWeather';
 import {
   DailyForecast,
   Header,
@@ -10,6 +12,20 @@ import {
 
 export const WeatherPage = () => {
   const { ref, height } = useElementHeight();
+  const apiUrl =
+    'https://api.open-meteo.com/v1/forecast?latitude=52.23&longitude=21.01&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m&timezone=auto';
+  const { data, loading, error } = useWeather({ apiUrl });
+  useEffect(() => {
+    if (loading) {
+      console.log('loading...');
+    } else {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(data);
+      }
+    }
+  }, [data]);
 
   return (
     <div className="page">
