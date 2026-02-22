@@ -1,4 +1,4 @@
-import { SearchIcon } from 'lucide-react';
+import { CircleX, SearchIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useLocations } from '../../hooks/useLocations';
 import { Input } from '../components/Input/Input';
@@ -19,7 +19,6 @@ export const WelcomeSection = () => {
     );
   }, [query]);
 
-  // FIXME: ошибки null в консоли (это че за ужасы)
   useEffect(() => {
     if (error) {
       console.error(error);
@@ -63,7 +62,17 @@ export const WelcomeSection = () => {
                   setOpened(true);
                 }
               }}
+              value={query}
             />
+
+            <div
+              className="welcome__close-icon"
+              onClick={() => {
+                setQuery('');
+              }}
+            >
+              <CircleX size={20} />
+            </div>
           </div>
         </form>
 
@@ -81,13 +90,13 @@ export const WelcomeSection = () => {
               ))}
 
             {/* spinner taken from https://cssloaders.github.io/ */}
+            {/* FIXME: добавить ссылку на спиннер в readme */}
             {loading && data?.length === 0 && (
               <li className="dropdown__location--spinner">
                 <div className="loader"></div>
               </li>
             )}
 
-            {/* TODO: можно эмодзи добавить или что-то ещё (выглядит грустно пока что) */}
             {(!data || (data?.length === 0 && !loading)) && (
               <li className="dropdown__location--empty">Ничего нет :/</li>
             )}

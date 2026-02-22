@@ -3,6 +3,7 @@ interface InputProps {
   name: string;
   className?: string;
   placeholder?: string;
+  value: string;
   onClick?: () => void;
   onChange?: (val: string) => void;
 }
@@ -10,6 +11,7 @@ interface InputProps {
 export const Input = ({
   type = '',
   name,
+  value,
   className = '',
   placeholder = '',
   onClick = () => {},
@@ -24,6 +26,7 @@ export const Input = ({
       placeholder={placeholder}
       onClick={onClick}
       onChange={(e) => onChange(e.target.value)}
+      value={value}
     />
   );
 };

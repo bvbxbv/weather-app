@@ -55,6 +55,17 @@
         color: vars.$theme-text-muted;
       }
 
+      .welcome__close-icon {
+        color: vars.$theme-text-muted;
+        font-weight: bold;
+        padding-right: 1rem;
+
+        &:hover {
+          cursor: pointer;
+          color: #fff;
+        }
+      }
+
       .welcome__search-input {
         width: 100%;
         height: 50px;
