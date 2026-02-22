@@ -82,8 +82,12 @@ export const WelcomeSection = () => {
                 </li>
               ))}
 
-            {/* TODO: спиннер */}
-            {loading && <li className="dropdown__location--empty">Loading...</li>}
+            {/* spinner taken from https://cssloaders.github.io/ */}
+            {loading && data?.length === 0 && (
+              <li className="dropdown__location--spinner">
+                <div className="loader"></div>
+              </li>
+            )}
 
             {/* TODO: можно эмодзи добавить или что-то ещё (выглядит грустно пока что) */}
             {(!data || (data?.length === 0 && !loading)) && (
