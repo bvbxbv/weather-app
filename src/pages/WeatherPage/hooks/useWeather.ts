@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getWeather, type Weather } from '../../../services/weatherService';
+import { getWeather } from '../../../services/weatherService';
+import { type Weather } from '../../../types';
 
 interface useWeatherProps {
   apiUrl: string;

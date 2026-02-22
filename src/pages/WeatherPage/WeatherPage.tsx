@@ -27,6 +27,7 @@ export const WeatherPage = () => {
       }
     }
   }, [data, loading, error]);
+
   return (
     <div className="page">
       <div className="page__root">
