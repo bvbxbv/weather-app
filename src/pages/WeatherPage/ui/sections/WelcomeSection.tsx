@@ -1,14 +1,13 @@
 import { CircleX, SearchIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useDebounce } from '../../hooks/useDebounce';
 import { useLocations } from '../../hooks/useLocations';
 import { Input } from '../components/Input/Input';
-import { useDebounce } from '../../hooks/useDebounce';
 
 export const WelcomeSection = () => {
   const [opened, setOpened] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
-  
-  
+
   const debounceValue = useDebounce(query);
   const { data, loading, error } = useLocations(debounceValue);
 
@@ -23,7 +22,7 @@ export const WelcomeSection = () => {
   useEffect(() => {
     const clickOutsideHandler = (e: MouseEvent) => {
       if (!ref.current) return;
-      
+
       if (!ref.current.contains(e.target as Node)) {
         setOpened(false);
       }

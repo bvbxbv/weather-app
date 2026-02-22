@@ -11,6 +11,12 @@ export const useLocations = (query: string) => {
     const runService = async () => {
       setLoading(true);
       try {
+        if (!query.trim()) {
+          setData(null);
+          setLoading(false);
+          return;
+        }
+
         const res = await getLocation(query);
         setData(res);
       } catch (err) {
