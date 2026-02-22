@@ -1,3 +1,4 @@
+import { buildLocationsApiUrl } from '../pages/WeatherPage/factories/locationsApiUrl';
 import type { Location } from '../types';
 
 interface RawLocation {
@@ -15,8 +16,8 @@ interface RawLocation {
   timezone: string;
 }
 
-const fetchLocations = async (apiUrl: string) => {
-  const res = await fetch(apiUrl);
+const fetchLocations = async (query: string) => {
+  const res = await fetch(buildLocationsApiUrl(query));
 
   if (!res.ok) {
     // FIXME: вынести в отдельное исключение
@@ -26,8 +27,8 @@ const fetchLocations = async (apiUrl: string) => {
   return await res.json();
 };
 
-export const getLocation = async (apiUrl: string): Promise<Location[]> => {
-  const raw = await fetchLocations(apiUrl);
+export const getLocation = async (query: string): Promise<Location[]> => {
+  const raw = await fetchLocations(query);
   const rawLocations: RawLocation[] = raw.results ?? [];
   const locations: Location[] = rawLocations.map((i) => ({
     country: {

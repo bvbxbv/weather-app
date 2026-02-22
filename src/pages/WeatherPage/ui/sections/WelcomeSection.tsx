@@ -1,14 +1,12 @@
 import { CircleX, SearchIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
-import { buildLocationsApiUrl } from '../../factories/locationsApiUrl';
 import { useLocations } from '../../hooks/useLocations';
 import { Input } from '../components/Input/Input';
 
 export const WelcomeSection = () => {
   const [opened, setOpened] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
-  const apiUrl = buildLocationsApiUrl(query);
-  const { data, loading, error } = useLocations({ apiUrl });
+  const { data, loading, error } = useLocations(query);
 
   const ref = useRef<HTMLDivElement | null>(null);
 
