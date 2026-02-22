@@ -65,8 +65,6 @@ export const WelcomeSection = () => {
               }}
             />
           </div>
-
-          <button className="welcome__search-submit">Search</button>
         </form>
 
         <div className={'input__dropdown ' + (opened ? 'visible' : 'hidden')}>

@@ -65,21 +65,6 @@
         color: white;
       }
     }
-
-    &-submit {
-      height: 50px;
-      padding: 0 1rem;
-      font-weight: 500;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      color: white;
-      background-color: vars.$theme-controls-primary-background;
-
-      &:hover {
-        background-color: vars.$theme-controls-primary-background-hovered;
-      }
-    }
   }
 }
 
@@ -94,7 +79,6 @@
 
   .input__dropdown {
     position: absolute;
-    top: 125px;
     width: 100%;
     height: auto;
     z-index: 9999;
@@ -106,9 +90,7 @@
 
     transition: opacity 0.25s;
 
-    @include mixins.on(md) {
-      top: 60px; // gap - 10px
-    }
+    top: 60px; // gap - 10px
 
     ul {
       min-height: 250px;
@@ -146,6 +128,7 @@
         justify-content: center;
         align-items: center;
         height: 250px;
+
         .loader {
           width: 48px;
           height: 48px;
