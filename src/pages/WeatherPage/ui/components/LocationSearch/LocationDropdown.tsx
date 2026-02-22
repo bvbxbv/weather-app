@@ -1,4 +1,5 @@
 import type { Location } from '../../../../../types';
+import { LocationLoading } from './LocationLoading';
 
 interface LocationDropdownProps {
   opened: boolean;
@@ -21,13 +22,7 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
             </li>
           ))}
 
-        {/* spinner taken from https://cssloaders.github.io/ */}
-        {/* FIXME: добавить ссылку на спиннер в readme */}
-        {loading && data?.length === 0 && (
-          <li className="dropdown__location--spinner">
-            <div className="loader"></div>
-          </li>
-        )}
+        <LocationLoading enabled={loading && data?.length === 0} />
 
         {(!data || (data?.length === 0 && !loading)) && (
           <li className="dropdown__location--empty">Ничего нет :/</li>
