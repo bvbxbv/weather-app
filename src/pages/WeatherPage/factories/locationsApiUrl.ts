@@ -1,7 +1,7 @@
 export const buildLocationsApiUrl = (
   query: string,
   params: Record<string, number | string> = {
-    count: 5,
+    count: 15,
     language: 'auto',
     format: 'json',
   },
