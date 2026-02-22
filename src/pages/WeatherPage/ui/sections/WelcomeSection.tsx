@@ -1,23 +1,16 @@
 import { CircleX, SearchIcon } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { buildLocationsApiUrl } from '../../factories/locationsApiUrl';
 import { useLocations } from '../../hooks/useLocations';
 import { Input } from '../components/Input/Input';
 
 export const WelcomeSection = () => {
   const [opened, setOpened] = useState<boolean>(false);
   const [query, setQuery] = useState<string>('');
-  const [apiUrl, setApiUrl] = useState<string>(
-    `https://geocoding-api.open-meteo.com/v1/search?name=${query ?? ''}&count=10&language=auto&format=json`,
-  );
+  const apiUrl = buildLocationsApiUrl(query);
   const { data, loading, error } = useLocations({ apiUrl });
 
   const ref = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    setApiUrl(
-      `https://geocoding-api.open-meteo.com/v1/search?name=${query}&count=10&language=auto&format=json`,
-    );
-  }, [query]);
 
   useEffect(() => {
     if (error) {
