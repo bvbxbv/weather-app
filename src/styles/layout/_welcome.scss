@@ -177,6 +177,10 @@
         align-items: center;
         height: 50px;
         padding: 0 0.5rem;
+        margin: 0 0.5rem;
+
+        // FIXME: вынести в vars
+        border-radius: 10px;
 
         &:first-child {
           padding-top: 0;
@@ -184,6 +188,12 @@
 
         &:last-child {
           padding-bottom: 0;
+        }
+
+        &:hover {
+          // FIXME: вынести в vars
+          background-color: #34345a;
+          cursor: pointer;
         }
 
         &--flag {
