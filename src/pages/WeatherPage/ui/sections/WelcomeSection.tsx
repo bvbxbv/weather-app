@@ -41,7 +41,12 @@ export const WelcomeSection = () => {
           onInputClick={onInputClick}
         />
 
-        <LocationDropdown opened={opened} data={data} loading={loading} />
+        <LocationDropdown
+          opened={opened}
+          data={data}
+          loading={loading}
+          onItemClick={() => setOpened(false)}
+        />
       </div>
     </section>
   );
