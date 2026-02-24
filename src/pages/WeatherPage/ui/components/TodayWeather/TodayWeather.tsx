@@ -9,7 +9,7 @@ interface TodayWeatherProps {
   //   }
   // }
   // FIXME: подумай об этом, стоит ли вообще
-  location: string; // Berlin, Germany
+  location?: string; // Berlin, Germany
   timestamp: string; // Tuesday, Aug 5, 2025
   temperature: string; // 20*
 }
@@ -19,7 +19,9 @@ export const TodayWeather = ({ location, timestamp, temperature }: TodayWeatherP
     <section className="today-weather">
       <div className="today-weather__overlay">
         <div className="today-weather__text">
-          <div className="today-weather__text-location">{location}</div>
+          <div className="today-weather__text-location">
+            {location ?? 'Please pick your location'}
+          </div>
 
           <div className="today-weather__text-timestamp">{timestamp}</div>
         </div>
