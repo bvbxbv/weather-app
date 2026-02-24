@@ -1,5 +1,5 @@
 import type { Location } from '../../../../../types';
-import { LocationDropdownItem } from './LocationDropdownItem';
+import { LocationDropdownItem, type Coords } from './LocationDropdownItem';
 import { LocationEmpty } from './LocationEmpty';
 import { LocationLoading } from './LocationLoading';
 
@@ -13,6 +13,10 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
   const hasLocations = data && data.length > 0;
   const isScrollable = hasLocations && data.length > 5;
 
+  const onLocationClick = (city: string, country: string, coords: Coords): void => {
+    console.log({ city, country, coords });
+  };
+
   return (
     <div className={`input__dropdown ${opened ? 'visible' : 'hidden'}`}>
       <ul className={isScrollable ? 'scrollable' : ''}>
@@ -21,6 +25,8 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
             <LocationDropdownItem
               city={location.city.name}
               country={location.country.name}
+              coords={location.meta.coords}
+              onClick={onLocationClick}
               key={location.city.id}
             />
           ))}
