@@ -8,9 +8,10 @@ interface LocationDropdownProps {
   opened: boolean;
   data: Location[] | null;
   loading: boolean;
+  onItemClick: () => void;
 }
 
-export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProps) => {
+export const LocationDropdown = ({ opened, data, loading, onItemClick }: LocationDropdownProps) => {
   const hasLocations = data && data.length > 0;
   const isScrollable = hasLocations && data.length > 5;
 
@@ -21,6 +22,8 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
       lat: coords.lat,
       lon: coords.lon,
     });
+
+    onItemClick();
   };
 
   return (
