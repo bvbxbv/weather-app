@@ -1,3 +1,4 @@
+import { useLocationStore } from '../../../../../stores/locationStore';
 import type { Location } from '../../../../../types';
 import { LocationDropdownItem, type Coords } from './LocationDropdownItem';
 import { LocationEmpty } from './LocationEmpty';
@@ -14,7 +15,12 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
   const isScrollable = hasLocations && data.length > 5;
 
   const onLocationClick = (city: string, country: string, coords: Coords): void => {
-    console.log({ city, country, coords });
+    useLocationStore.getState().setLocation({
+      city,
+      country,
+      lat: coords.lat,
+      lon: coords.lon,
+    });
   };
 
   return (
