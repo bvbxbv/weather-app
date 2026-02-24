@@ -1,4 +1,5 @@
 import type { Location } from '../../../../../types';
+import { LocationDropdownItem } from './LocationDropdownItem';
 import { LocationEmpty } from './LocationEmpty';
 import { LocationLoading } from './LocationLoading';
 
@@ -17,12 +18,11 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
       <ul className={isScrollable ? 'scrollable' : ''}>
         {hasLocations &&
           data.map((location) => (
-            <li className="dropdown__location" key={location.city.id}>
-              <div className="dropdown__location--flag" />
-              <div className="dropdown__location--name">
-                {location.city.name}, {location.country.name}
-              </div>
-            </li>
+            <LocationDropdownItem
+              city={location.city.name}
+              country={location.country.name}
+              key={location.city.id}
+            />
           ))}
 
         <LocationLoading enabled={loading && !hasLocations} />
