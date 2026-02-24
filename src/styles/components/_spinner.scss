@@ -1,0 +1,40 @@
+@use '../vars/bootstrap' as vars;
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.spinner--default {
+    .spinner__loader {
+      width: vars.$font-default--size;
+      height: vars.$font-default--size;
+    }
+  }
+
+  &.spinner--big {
+    .spinner__loader {
+      // FIXME: вынести в vars
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  .spinner__loader {
+    border: 1px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { useLocationStore } from '../../../../../stores/locationStore';
 import type { Location } from '../../../../../types';
+import { Spinner } from '../Spinner';
 import { LocationDropdownItem, type Coords } from './LocationDropdownItem';
 import { LocationEmpty } from './LocationEmpty';
-import { LocationLoading } from './LocationLoading';
 
 interface LocationDropdownProps {
   opened: boolean;
@@ -40,7 +40,7 @@ export const LocationDropdown = ({ opened, data, loading, onItemClick }: Locatio
             />
           ))}
 
-        <LocationLoading enabled={loading && !hasLocations} />
+        <Spinner enabled={loading && !hasLocations} variant="big" />
         <LocationEmpty enabled={!hasLocations && !loading} />
       </ul>
     </div>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocationStore } from '../../stores/locationStore';
+import { formatDate } from '../../utils/helpers';
 import { useElementHeight } from './hooks/useElementHeight';
 import { useWeather } from './hooks/useWeather';
 import {
@@ -49,7 +50,7 @@ export const WeatherPage = () => {
             <div className="weather-dashboard__root" ref={ref}>
               <TodayWeather
                 location={location ? `${location?.city}, ${location?.country}` : undefined}
-                timestamp="Tuesday, Aug 5, 2025"
+                timestamp={weather ? formatDate(weather?.current.time) : undefined}
                 temperature="20"
               />
 

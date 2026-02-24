@@ -1,3 +1,5 @@
+import { Spinner } from '../Spinner';
+
 interface TodayWeatherProps {
   // можно будет обернуть location в объект типа
   // location = {
@@ -10,7 +12,7 @@ interface TodayWeatherProps {
   // }
   // FIXME: подумай об этом, стоит ли вообще
   location?: string; // Berlin, Germany
-  timestamp: string; // Tuesday, Aug 5, 2025
+  timestamp?: string; // Tuesday, Aug 5, 2025
   temperature: string; // 20*
 }
 
@@ -23,7 +25,7 @@ export const TodayWeather = ({ location, timestamp, temperature }: TodayWeatherP
             {location ?? 'Please pick your location'}
           </div>
 
-          <div className="today-weather__text-timestamp">{timestamp}</div>
+          <div className="today-weather__text-timestamp">{timestamp ?? <Spinner enabled />}</div>
         </div>
 
         <div className="today-weather__temperature">{temperature}&deg;</div>
