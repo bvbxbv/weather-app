@@ -1,4 +1,6 @@
+import { useLocationStore } from '../../../../../stores/locationStore';
 import type { Location } from '../../../../../types';
+import { LocationDropdownItem, type Coords } from './LocationDropdownItem';
 import { LocationEmpty } from './LocationEmpty';
 import { LocationLoading } from './LocationLoading';
 
@@ -12,17 +14,27 @@ export const LocationDropdown = ({ opened, data, loading }: LocationDropdownProp
   const hasLocations = data && data.length > 0;
   const isScrollable = hasLocations && data.length > 5;
 
+  const onLocationClick = (city: string, country: string, coords: Coords): void => {
+    useLocationStore.getState().setLocation({
+      city,
+      country,
+      lat: coords.lat,
+      lon: coords.lon,
+    });
+  };
+
   return (
     <div className={`input__dropdown ${opened ? 'visible' : 'hidden'}`}>
       <ul className={isScrollable ? 'scrollable' : ''}>
         {hasLocations &&
           data.map((location) => (
-            <li className="dropdown__location" key={location.city.id}>
-              <div className="dropdown__location--flag" />
-              <div className="dropdown__location--name">
-                {location.city.name}, {location.country.name}
-              </div>
-            </li>
+            <LocationDropdownItem
+              city={location.city.name}
+              country={location.country.name}
+              coords={location.meta.coords}
+              onClick={onLocationClick}
+              key={location.city.id}
+            />
           ))}
 
         <LocationLoading enabled={loading && !hasLocations} />
