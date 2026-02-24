@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useLocationStore } from '../../stores/locationStore';
 import { formatDate } from '../../utils/helpers';
 import { useElementHeight } from './hooks/useElementHeight';
@@ -14,17 +14,14 @@ import {
 
 export const WeatherPage = () => {
   const { ref, height } = useElementHeight();
-  // FIXME: снесите это немедленно
-  const weatherUrl =
-    'https://api.open-meteo.com/v1/forecast?latitude=52.23&longitude=21.01&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,wind_speed_10m&timezone=auto';
-
   const location = useLocationStore((s) => s.current);
 
-  const {
-    data: weather,
-    loading: weatherLoading,
-    error: weatherError,
-  } = useWeather({ apiUrl: weatherUrl });
+  const coords = useMemo(() => {
+    if (!location) return undefined;
+    return { lat: location.lat, lon: location.lon };
+  }, [location]);
+
+  const { data: weather, loading: weatherLoading, error: weatherError } = useWeather(coords);
 
   useEffect(() => {
     if (weatherLoading) {

@@ -1,7 +1,8 @@
+import { buildWeatherApiUrl } from '../pages/WeatherPage/factories/weatherApiUrl';
 import type { Weather } from '../types';
 
-const fetchWeather = async (apiUrl: string) => {
-  const res = await fetch(apiUrl);
+const fetchWeather = async (coords: { lat: number; lon: number }) => {
+  const res = await fetch(buildWeatherApiUrl(coords));
 
   if (!res.ok) {
     // FIXME: вынести в отдельное исключение
@@ -11,8 +12,8 @@ const fetchWeather = async (apiUrl: string) => {
   return await res.json();
 };
 
-export const getWeather = async (apiUrl: string): Promise<Weather> => {
-  const raw = await fetchWeather(apiUrl);
+export const getWeather = async (coords: { lat: number; lon: number }): Promise<Weather> => {
+  const raw = await fetchWeather(coords);
   return {
     current: {
       temperature: {
